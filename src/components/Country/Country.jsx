@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Country.css";
 
 const Country = ({ country }) => {
+  const [visited, setVisited] = useState(false);
+
   //   console.log(country.continents.continents);
 
   const handleVisited = () => {
-    console.log("Button clicked!");
+    // console.log("Button clicked!");
+    // setVisited(true);(toggle step-01)
+
+    //Using if else conditional rendering (toggle step-02)
+    // if (visited) {
+    //   setVisited(false);
+    // } else {
+    //   setVisited(true);
+    // }
+
+    //Using ternary conditional rendering (toggle step-03)
+    // setVisited(visited ? false : true);
+
+    //toggle step-04
+    setVisited(!visited);
   };
 
   return (
-    <div className="country">
+    // <div className= {`country border-lg text-center ${visited ? 'country-visited' : 'country-not-visited'}`}>
+    <div className={`country ${visited && "country-visited"}`}>
       <h3>Name: {country.name.common}</h3>
       <p>Official Name: {country.name.official}</p>
       <p>
@@ -39,7 +56,9 @@ const Country = ({ country }) => {
       </p>
       <p>Continents: {country.continents.continents}</p>
       <img src={country.flags.flags.png} alt="{country.flags.flags.alt}" />
-      <button onClick={handleVisited}>Not Visited</button>
+      <button onClick={handleVisited}>
+        {visited ? "Visited" : "Not Visited"}
+      </button>
     </div>
   );
 };
