@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Country.css";
 
-const Country = ({ country }) => {
+const Country = ({ country, handleVisitedCountries }) => {
   const [visited, setVisited] = useState(false);
-
   //   console.log(country.continents.continents);
-
+//   console.log(handleVisitedCountries);
   const handleVisited = () => {
     // console.log("Button clicked!");
     // setVisited(true);(toggle step-01)
@@ -22,6 +21,7 @@ const Country = ({ country }) => {
 
     //toggle step-04
     setVisited(!visited);
+    handleVisitedCountries(country);
   };
 
   return (
@@ -67,5 +67,5 @@ export default Country;
 
 /*
 1. Inline css
-2. 
+2. Concept: Lift up the state
 */
