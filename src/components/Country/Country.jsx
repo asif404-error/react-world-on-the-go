@@ -1,19 +1,25 @@
 import React from "react";
+import "./Country.css";
 
 const Country = ({ country }) => {
-  console.log(country.continents.continents);
+  //   console.log(country.continents.continents);
+
+  const handleVisited = () => {
+    console.log("Button clicked!");
+  };
+
   return (
-    <div>
+    <div className="country">
       <h3>Name: {country.name.common}</h3>
       <p>Official Name: {country.name.official}</p>
       <p>
         Currencies:
         {Object.keys(country.currencies.currencies)
           .map((key) => {
-              const currency = country.currencies.currencies[key];
-              return `${currency.name} (${currency.symbol})`;
-            })
-            .join(", ")}
+            const currency = country.currencies.currencies[key];
+            return `${currency.name} (${currency.symbol})`;
+          })
+          .join(", ")}
       </p>
       <p>Capital: {country.capital.capital}</p>
       <p>Region: {country.region.region}</p>
@@ -21,12 +27,26 @@ const Country = ({ country }) => {
         Languages:
         {Object.values(country.languages.languages).join(", ")}
       </p>
-      <p>Area: {country.area.area}</p>
-      <p>Popultaion: {country.population.population}</p>
+      <p>
+        Area: {country.area.area}{" "}
+        {country.area.area > 300000 ? "Big Country" : "Small Country"}
+      </p>
+      <p>
+        Popultaion: {country.population.population}{" "}
+        {country.population.population > 50000000
+          ? "Large Population"
+          : "Shortage of Resident"}
+      </p>
       <p>Continents: {country.continents.continents}</p>
       <img src={country.flags.flags.png} alt="{country.flags.flags.alt}" />
+      <button onClick={handleVisited}>Not Visited</button>
     </div>
   );
 };
 
 export default Country;
+
+/*
+1. Inline css
+2. 
+*/
