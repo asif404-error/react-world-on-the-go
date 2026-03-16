@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Country.css";
 
-const Country = ({ country, handleVisitedCountries }) => {
+const Country = ({ country, handleVisitedCountries, handleVisitedFlags }) => {
   const [visited, setVisited] = useState(false);
   //   console.log(country.continents.continents);
-//   console.log(handleVisitedCountries);
+  //   console.log(handleVisitedCountries);
   const handleVisited = () => {
     // console.log("Button clicked!");
     // setVisited(true);(toggle step-01)
@@ -55,9 +55,16 @@ const Country = ({ country, handleVisitedCountries }) => {
           : "Shortage of Resident"}
       </p>
       <p>Continents: {country.continents.continents}</p>
-      <img src={country.flags.flags.png} alt="{country.flags.flags.alt}" />
+      <img src={country?.flags?.flags?.png} alt="{country.flags.flags.alt}" />
       <button onClick={handleVisited}>
         {visited ? "Visited" : "Not Visited"}
+      </button>
+      <button
+        onClick={() => {
+          handleVisitedFlags(country?.flags?.flags?.png);
+        }}
+      >
+        Add Visited Flags
       </button>
     </div>
   );
