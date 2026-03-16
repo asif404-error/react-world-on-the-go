@@ -7,6 +7,8 @@ const Countries = ({ countriesPromise }) => {
 
   const handleVisitedCountries = (country) => {
     console.log("Handle Visited Country Clicked!", country);
+    const newVisitedCountries = [...visitedCountries, country];
+    setVisitedCountries(newVisitedCountries);
   };
 
   const countriesData = use(countriesPromise);
@@ -15,7 +17,12 @@ const Countries = ({ countriesPromise }) => {
   return (
     <div>
       <h1>In the countries: {countries.length}</h1>
-      <h3>Total Country Visited: </h3>
+      <h3>Total Country Visited: {visitedCountries.length}</h3>
+      <ol>
+        {visitedCountries.map((country) => (
+          <li key={country.cca3.cca3}>{country.name.common}</li>
+        ))}
+      </ol>
       <div className="countries">
         {countries.map((country) => (
           <Country
@@ -32,3 +39,11 @@ const Countries = ({ countriesPromise }) => {
 export default Countries;
 
 //Most of the cases, In React, the Data is uni-directional
+
+/*
+const numbers = [1, 5, 24, 5, 6];
+const newNumbers = [numbers]; 
+output: newNumbers = [Array (5)]
+const newNumbers = [...numbers] //we will use spread operator to get the array of numbers
+const newNumbers = [...numbers, 44]; //to add extra numbers in the array
+*/
